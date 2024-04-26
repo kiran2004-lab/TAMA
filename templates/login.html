@@ -1,0 +1,49 @@
+{% extends 'Navbar/projectnavbar.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+{% block body %}
+{% if messages %}
+    {% for message in messages %}
+        {% if message.tags %}
+            <script>alert("{{ message }}")</script>
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card mt-5">
+        <div class="card-header">
+          <h1 class="text-center">Login</h1>
+        </div>
+        <div class="card-body">
+          <form method="post" action="{% url 'login1' %}">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="username">Username:</label>
+              <input type="text" name="username" id="username" class="form-control" placeholder="Enter Username" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password:</label>
+              <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color: #37DA1A;">Submit</button>
+                <button type="reset" class="btn btn-secondary btn-lg btn-block" style="background-color: #1AC6DA;">Clear</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+</body>
+</html>

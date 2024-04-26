@@ -1,0 +1,33 @@
+{% extends 'Navbar/teammatesnavbar.html' %}
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block body %}
+<div class="container mt-5">
+    <h2>Task Details List</h2>
+    <div class="row">
+        {% for task_details in personal_task_details_list %}
+           <div class="col-md-4 mb-4">
+               <div class="card">
+                   <div class="card-body">
+                       <h5 class="card-title">{{ task_details.Task_Title }}</h5>
+                       <p class="card-text">Task Priority: {{ task_details.get_Task_Priority_display }}</p>
+                       <p class="card-text">Start Date: {{ task_details.Start_Date }}</p>
+                       <p class="card-text">End Date: {{ task_details.End_Date }}</p>
+                       <p class="card-text">Description: {{ task_details.Description }}</p>
+                       <a href="{% url 'teammatesmodule:edit_personal_task_details' task_details.id %}" class="btn btn-primary">Edit</a>
+                       <a href="{% url 'teammatesmodule:delete_personal_task_details' task_details.id %}" class="btn btn-danger">Delete</a>
+                   </div>
+               </div>
+           </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>

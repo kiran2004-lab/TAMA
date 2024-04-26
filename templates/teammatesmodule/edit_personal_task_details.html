@@ -1,0 +1,59 @@
+{% extends 'Navbar/teammatesnavbar.html' %}
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'path/to/bootstrap/css/bootstrap.min.css' %}">
+</head>
+<body>
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" action="#">
+                        {% csrf_token %}
+
+                        <div class="form-group">
+                            <label for="TaskTitle">Task Title:</label>
+                            <input type="text" class="form-control" name="TaskTitle" value="{{ task_details.Task_Title }}" required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="TaskPriority">Task Priority:</label>
+                            <select class="form-control" name="TaskPriority" required>
+                                <option value="High" {% if task_details.TaskPriority == 'High' %}selected{% endif %}>High</option>
+                                <option value="Medium" {% if task_details.TaskPriority == 'Medium' %}selected{% endif %}>Medium</option>
+                                <option value="Low" {% if task_details.TaskPriority == 'Low' %}selected{% endif %}>Low</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="StartDate">Start Date:</label>
+                            <input type="date" class="form-control" name="StartDate" value="{{ task_details.Start_Date }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="EndDate">End Date:</label>
+                            <input type="date" class="form-control" name="EndDate" value="{{ task_details.End_Date }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Description">Description:</label>
+                            <textarea class="form-control" name="Description" required>{{ task_details.Description }}</textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+</body>
+</html>
